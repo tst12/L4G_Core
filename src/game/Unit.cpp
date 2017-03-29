@@ -597,7 +597,7 @@ void Unit::GetRandomContactPoint(const Unit* obj, float &x, float &y, float &z, 
 {
     float combat_reach = GetCombatReach();
     if (combat_reach < 0.1) // sometimes bugged for players
-        combat_reach = DEFAULT_COMBAT_REACH;
+        combat_reach = 1.5f;
 
     uint32 attacker_number = getAttackers().size();
     if (attacker_number > 0) --attacker_number;
