@@ -276,8 +276,8 @@ int dtNavMesh::findConnectingPolys(const float* va, const float* vb,
         dtPoly* poly = &tile->polys[i];
         const int nv = poly->vertCount;
 
-        if (nv < 0)
-            return 0;
+        //if (nv < 0)
+            //return 0;
 
         for (int j = 0; j < nv; ++j)
         {
