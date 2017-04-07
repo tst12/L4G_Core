@@ -268,8 +268,8 @@ int dtNavMesh::findConnectingPolys(const float* va, const float* vb,
 
     dtPolyRef base = getPolyRefBase(tile);
 
-    if (tile->header->polyCount <= 0)
-        return 0;
+    //if (tile->header->polyCount <= 0)
+        //return 0;
 
     for (int i = 0; i < tile->header->polyCount; ++i)
     {
