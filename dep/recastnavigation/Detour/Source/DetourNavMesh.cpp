@@ -381,13 +381,13 @@ void dtNavMesh::connectExtLinks(dtMeshTile* tile, dtMeshTile* target, int side)
                     dtLink* link = &tile->links[idx];
                     link->ref = nei[k];
                     link->edge = (unsigned char)j;
-                    link->side = (unsigned char)dir;
+                    link->side = (unsigned char)side;
 
                     link->next = poly->firstLink;
                     poly->firstLink = idx;
 
                     // Compress portal limits to a byte value.
-                    if (dir == 0 || dir == 4)
+                    if (side == 0 || side == 4)
                     {
                         float tmin = (neia[k*2+0]-va[2]) / (vb[2]-va[2]);
                         float tmax = (neia[k*2+1]-va[2]) / (vb[2]-va[2]);
@@ -396,7 +396,7 @@ void dtNavMesh::connectExtLinks(dtMeshTile* tile, dtMeshTile* target, int side)
                         link->bmin = (unsigned char)(dtClamp(tmin, 0.0f, 1.0f)*255.0f);
                         link->bmax = (unsigned char)(dtClamp(tmax, 0.0f, 1.0f)*255.0f);
                     }
-                    else if (dir == 2 || dir == 6)
+                    else if (side == 2 || side == 6)
                     {
                         float tmin = (neia[k*2+0]-va[0]) / (vb[0]-va[0]);
                         float tmax = (neia[k*2+1]-va[0]) / (vb[0]-va[0]);
