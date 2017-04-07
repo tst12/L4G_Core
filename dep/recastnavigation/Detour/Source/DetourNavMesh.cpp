@@ -268,21 +268,21 @@ int dtNavMesh::findConnectingPolys(const float* va, const float* vb,
 
     dtPolyRef base = getPolyRefBase(tile);
 
-    if (tile->header->polyCount <= 0)
-        return 0;
+    //if (tile->header->polyCount <= 0)
+        //return 0;
 
     for (int i = 0; i < tile->header->polyCount; ++i)
     {
         dtPoly* poly = &tile->polys[i];
         const int nv = poly->vertCount;
 
-        if (nv < 0)
-            return 0;
+        //if (nv < 0)
+            //return 0;
 
         for (int j = 0; j < nv; ++j)
         {
-            if (!poly->neis[j])
-                return 0;
+            //if (!poly->neis[j])
+                //return 0;
 
             // Skip edges which do not point to the right side.
             if (poly->neis[j] != m) continue;
@@ -292,8 +292,8 @@ int dtNavMesh::findConnectingPolys(const float* va, const float* vb,
             const float bpos = getSlabCoord(vc, side);
 
             // Segments are not close enough.
-            if (dtAbs(apos - bpos) > 0.01f)
-                continue;
+            //if (dtAbs(apos - bpos) > 0.01f)
+               // continue;
 
             // Check if the segments touch.
             calcSlabEndPoints(vc,vd, bmin,bmax, side);
@@ -372,7 +372,7 @@ void dtNavMesh::connectExtLinks(dtMeshTile* tile, dtMeshTile* target, int side)
             const float* vb = &tile->verts[poly->verts[(j+1) % nv]*3];
             dtPolyRef nei[4];
             float neia[4*2];
-            int nnei = findConnectingPolys(va,vb, target, dtOppositeTile(dir), nei,neia,4);
+            int nnei = findConnectingPolys(va,vb, target, dtOppositeTile(side), nei,neia,4);
             for (int k = 0; k < nnei; ++k)
             {
                 unsigned int idx = allocLink(tile);
