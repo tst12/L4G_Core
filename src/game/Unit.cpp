@@ -10249,8 +10249,10 @@ void Unit::setDeathState(DeathState s)
     else if (s == DEAD || s == CORPSE)
     {
         GetUnitStateMgr().DropAllStates();
-        SetDeathPosition(GetPositionX(), GetPositionY(), GetPositionZ());
     }
+
+    if (s == DEAD && GetTypeId() == TYPEID_UNIT)
+        SetDeathPosition(GetPositionX(), GetPositionY(), GetPositionZ());
 
     if (m_deathState != ALIVE && s == ALIVE)
     {
